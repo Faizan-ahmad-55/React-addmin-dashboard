@@ -1,0 +1,35 @@
+@import "tailwindcss";
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+/* GitHub Heatmap dark theme override */
+.react-calendar-heatmap {
+  font-size: 10px;
+}
+.react-calendar-heatmap text {
+  fill: #6b7280;
+  font-size: 6px;
+}
+.react-calendar-heatmap rect {
+  rx: 2;
+  ry: 2;
+}
+.react-calendar-heatmap .color-empty {
+  fill: #252b3d;
+}
+.react-calendar-heatmap .color-scale-0 {
+  fill: #252b3d;
+}
+.react-calendar-heatmap .color-scale-1 {
+  fill: #0e4429;
+}
+.react-calendar-heatmap .color-scale-2 {
+  fill: #006d32;
+}
+.react-calendar-heatmap .color-scale-3 {
+  fill: #26a641;
+}
+.react-calendar-heatmap .color-scale-4 {
+  fill: #39d353;
+}
