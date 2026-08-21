@@ -1,16 +1,16 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Sidebar from './components/sidebar'
+import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
-import Overview from './pages/Overview'
-import Projects from './pages/Projects'
-import Skills from './pages/Skills'
-import Experience from './pages/Experience'
-import Education from './pages/Education'
-import GithubStats from './pages/GithubStats'
-import Messages from './pages/Messages'
-import Profile from './pages/Profile'
-import Settings from './pages/Settings'
+import Overview from './Pages/Overview'
+import Projects from './Pages/Projects'
+import Skills from './Pages/Skills'
+import Experience from './Pages/Experience'
+import Education from './Pages/Education'
+import GithubStats from './Pages/GithubStats'
+import Messages from './Pages/Messages'
+import Profile from './Pages/Profile'
+import Settings from './Pages/Settings'
 
 function App() {
   return (

@@ -26,7 +26,7 @@ function Sidebar() {
   return (
     <div>
       
-    <aside className="w-72 min-h-screen bg-slate-900 text-white p-6">
+    <aside className="w-72 h-screen sticky hide-scrollbar top-0 overflow-y-auto bg-slate-900 text-white p-6">
 
   <h1 className="text-2xl font-bold mb-8">
     DevPortfolio
