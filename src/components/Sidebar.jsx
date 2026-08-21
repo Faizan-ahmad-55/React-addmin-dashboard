@@ -5,49 +5,54 @@ import{
    , 
   ToggleLeft
 } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
 import  Image  from '../assets/imgg.jpg';
 import { useState } from 'react';
 
 function Sidebar() {
   const [darkMood, setdarkMood] = useState(false)
-    const [ActiveItem, setActiveItem] = useState("Overview")
-    const menuItems = [
-  { name: "Overview", icon: LayoutDashboard },
-  { name: "Projects", icon: FolderKanban },
-  { name: "Skills", icon: Sparkles },
-  { name: "Experience", icon: BriefcaseBusiness },
-  { name: "Education", icon: GraduationCap },
-  { name: "GitHub Stats", icon: GitCompareArrows },
-  { name: "Messages", icon: MessageSquareMore },
-  { name: "Profile", icon: User },
-  { name: "Settings", icon: Settings },
+  
+  const menuItems = [
+  { name: "Overview", icon: LayoutDashboard, path: "/" },
+  { name: "Projects", icon: FolderKanban, path: "/projects" },
+  { name: "Skills", icon: Sparkles, path: "/skills" },
+  { name: "Experience", icon: BriefcaseBusiness, path: "/experience" },
+  { name: "Education", icon: GraduationCap, path: "/education" },
+  { name: "GitHub Stats", icon: GitCompareArrows, path: "/github-stats" },
+  { name: "Messages", icon: MessageSquareMore, path: "/messages" },
+  { name: "Profile", icon: User, path: "/profile" },
+  { name: "Settings", icon: Settings, path: "/settings" },
 ];
   return (
+    <div>
+      
     <aside className="w-72 min-h-screen bg-slate-900 text-white p-6">
 
   <h1 className="text-2xl font-bold mb-8">
     DevPortfolio
   </h1>
-<nav className="flex flex-col gap-2">
-  {menuItems.map((item, index) => {
+
+  <nav className="flex flex-col gap-2">
+  {menuItems.map((item) => {
     const Icon = item.icon;
 
     return (
-      <button
-      onClick={() => setActiveItem(item.name)}
+      <NavLink
         key={item.name}
-        className={`flex items-center gap-3 px-4 py-3 rounded-lg text-left ${
-          item.name === ActiveItem
-            ? "bg-purple-600"
-            : "hover:bg-slate-800"
-        }`}
+        to={item.path}
+        className={({ isActive }) =>
+          `flex items-center gap-3 px-4 py-3 rounded-lg text-left ${
+            isActive ? "bg-purple-600" : "hover:bg-slate-800"
+          }`
+        }
       >
         <Icon size={20} />
         <span>{item.name}</span>
-      </button>
+      </NavLink>
     );
   })}
 </nav>
+
 <div className=' mb-2 items-center gap-2 px-4 py-3'>
 
 <div className='flex  bg-slate-800 content-center items-center gap-3 px-4 py-3 rounded-lg text-nowrap'>
@@ -90,6 +95,7 @@ bg-green-400'></span>
 </div>
 
 </aside>
+    </div>
 
   );
 }

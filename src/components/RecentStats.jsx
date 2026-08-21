@@ -1,9 +1,9 @@
-import { ExternalLink, ClipboardMinus, GitCommitHorizontal, GitPullRequest, Star, FolderPlus, User, Award, Mail, CheckCircle2 } from 'lucide-react'
+import { ExternalLink, ClipboardMinus, GitCommitHorizontal, GitPullRequest, Star, FolderPlus, User, Award, Mail, CheckCircle2, Trash2 } from 'lucide-react'
 import React from 'react'
 import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
-import { subDays, format } from "date-fns";
-
+import { subDays, format, set } from "date-fns";
+import { useState } from 'react';
 const RecentStats = () => {
   const activities = [
   {
@@ -48,30 +48,39 @@ const RecentStats = () => {
     { icon: <GitPullRequest />, total: "24", title: "Pull Requests" },
     { icon: <Star />, total: "156", title: "Stars" },
   ]
-
-  const data = [
-    {
+const [Projects, setProjects] = useState([
+  {
       title: "Developers Dashboard",
       date: "2026-05-01",
       description: "This is a dashboard for developers to track their progress and stats.",
       tags: ["HTML", "CSS", "JavaScript", "React"],
-      image: "https://cdn.dribbble.com/userupload/9798824/file/original-15a8c650321dd0218088606743e86195.png?crop=0x0-4200x3150&resize=1600x1200"
+      image: "https://cdn.dribbble.com/userupload/9798824/file/original-15a8c650321dd0218088606743e86195.png?crop=0x0-4200x3150&resize=1600x1200",
+      
     },
     {
       title: "E-commerce Website",
       date: "2025-10-04",
       description: "This is an e-commerce website for selling products online.",
       tags: ["HTML", "CSS", "JavaScript", "React"],
-      image: "https://cdn.dribbble.com/userupload/23744972/file/original-f09ad4491cf30c1628e68083ad7d12ad.jpg?resize=400x0"
+      image: "https://cdn.dribbble.com/userupload/23744972/file/original-f09ad4491cf30c1628e68083ad7d12ad.jpg?resize=400x0",
+      
+
     },
     {
       title: "Movie Search website",
       date: "2026-05-01",
       description: "This is a movie search website for finding and browsing movies.",
       tags: ["HTML", "CSS", "JavaScript", "React"],
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsNt0S2m8uxdxHy0vvVdqhxoOFjbRF1le9ug6ojwV3PmROhuNJiOJojXRv&s=1000"
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsNt0S2m8uxdxHy0vvVdqhxoOFjbRF1le9ug6ojwV3PmROhuNJiOJojXRv&s=1000",
+      
+
     }
-  ]
+])
+   
+const handledeleteProject = (indexToDelete) => {
+  setProjects(Projects.filter((item, index) => index !== indexToDelete));
+
+}
 
   const generateHeatmapData = () => {
     const heatmapData = [];
@@ -94,9 +103,10 @@ const RecentStats = () => {
       <div className='bg-slate-800 rounded-lg flex-1'>
         <div className='flex justify-between items-center'>
           <h1 className='font-semibold text-white p-5'>Recent Projects</h1>
+    
         </div>
 
-        {data.map((item, index) => (
+        {Projects.map((item, index) => (
           <div key={index} className='flex gap-3 rounded-lg p-4 mt-3'>
             <span className='shrink-0'>
               <img src={item.image} alt={item.title} className='w-20 h-20  object-cover mt-2 rounded-lg' />
@@ -107,8 +117,11 @@ const RecentStats = () => {
                 <span className='flex justify-end text-blue-400 hover:text-blue-300 cursor-pointer'>
                   <ExternalLink />
                 </span>
+                  <button onClick={() => handledeleteProject(index)}>
+                   <Trash2 size={18} className='text-red-400 hover:text-red-300 cursor-pointer' />
+                   </button>
               </div>
-              <p className='text-gray-300'>{item.description}</p>
+             <p className='text-gray-300'>{item.description}</p>
               <div className='flex flex-wrap gap-2 mt-2'>
                 {item.tags.map((tag, index) => (
                   <span key={index} className='bg-blue-500 text-white text-xs px-2 py-1 rounded'>
@@ -167,7 +180,7 @@ const RecentStats = () => {
           </div>
         </div>
       </div>
-
+ 
       {/* Recent Activities */}
       <div className=' bg-slate-800 rounded-lg p-5'>
         <h1 className='font-semibold text-white'>Recent Activities</h1>
